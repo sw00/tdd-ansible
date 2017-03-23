@@ -38,7 +38,25 @@ The command above should do the following:
 2. Assign a private network IP address to them of `192.168.33.10` and `192.168.33.20` to them respectively.
 3. Install Ansible on `control`.
 
+To test that the above command worked, we'll [SSH](https://en.wikipedia.org/wiki/Secure_Shell) into `control` machine
+and try to execute Ansible. 
+
+Type `vagrant ssh control` into your terminal and you should be presented with a prompt
+like `ubuntu@control$`. You are now in the `control` machine.
+
+Now type `ansible --version` and you should be greeted with the following output:
+```
+ansible 2.2.1.0
+config file = /etc/ansible/ansible.cfg
+configured module search path = Default w/o overrides
+```
+
 You can read more about Vagrant and the features it provides in its [documentation](https://www.vagrantup.com/docs/).
+
+## Outcome
+
+- Provisioned two virtual machines (`control` and `webserver`).
+- Machine called `control` has Ansible installed on it.
 
 ## Next Steps (Part 1)
 
