@@ -7,7 +7,7 @@ achieve with ad-hoc Ansible commands. Playbooks are specified in
 [YAML](https://docs.ansible.com/ansible/YAMLSyntax.html) format which is just a data serialization format that's easy to
 read for humans. Think of it as JSON but without all the curly braces and brackets.
 
-Lets create a playbook that will install MariaDB for us on our `webserver`. Create a file called `database.yml` that
+Lets create a playbook that will install MySQL DB for us on our `webserver`. Create a file called `database.yml` that
 looks like below.
 
 ```YAML
@@ -40,7 +40,7 @@ PLAY [all] *********************************************************************
 TASK [setup] *******************************************************************
 ok: [192.168.33.20]
 
-TASK [install mariadb] *********************************************************
+TASK [install mysqldb] *********************************************************
 changed: [192.168.33.20]
 
 PLAY RECAP *********************************************************************
@@ -59,8 +59,8 @@ following two modules: [mysql_db](https://docs.ansible.com/ansible/mysql_db_modu
 - hosts: all
   become: yes
   tasks:
-    - name: install mariadb
-      apt: name=mariadb-server state=present update_cache=yes
+    - name: install mysqldb
+      apt: name=mysqldb-server state=present update_cache=yes
 
     - name: create database `codedinbraam`
       mysql_db: name=codedinbraam state=present
