@@ -87,7 +87,7 @@ you can simply add the dependency as a task before the appropriate module is run
 
 ```YAML
 - name: install ansible module dependencies
-  apt: name=python-mysql state=present
+  apt: name=python-mysqldb state=present
 ```
 
 ## Outcomes
