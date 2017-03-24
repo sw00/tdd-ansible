@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
     end
 
     webserver.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get install -y python
       cat /vagrant/control_ssh_key.pub >> /home/ubuntu/.ssh/authorized_keys
     SHELL
   end
