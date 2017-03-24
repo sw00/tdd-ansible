@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: install mariadb
+      apt: name=mariadb-server state=present update_cache=true
+
+    - name: install ansible module dependencies
+      apt: name=python-mysqldb state=present
+
+    - name: create database `codedinbraam`
+      mysql_db: name=codedinbraam state=present
+
+    - name: create user
+      mysql_user:
+        name: dev
+        password: dev.password
+        priv: 'codedinbraam.*:ALL'
+        state: present
+
