@@ -1,20 +1,17 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    database_name: codedinbraam
+    database_user: dev
+    database_password: dev.password
   tasks:
-    - name: install mariadb
-      apt: name=mariadb-server state=present update_cache=true
+    - debug: "msg={{ ansible_distribution == 'Ubuntu' }}"
 
-    - name: install ansible module dependencies
-      apt: name=python-mysqldb state=present
+    - include: tasks/mariadb.yml
+      when: ansible_distribution == "Ubuntu"
 
-    - name: create database `codedinbraam`
-      mysql_db: name=codedinbraam state=present
-
-    - name: create user
-      mysql_user:
-        name: dev
-        password: dev.password
-        priv: 'codedinbraam.*:ALL'
-        state: present
+    - include: tasks/mysqldb.yml
+      when: 
+        - ansible_distribution == "CentOS"
 

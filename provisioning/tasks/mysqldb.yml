@@ -1,0 +1,18 @@
+---
+- debug: msg="meh"
+
+- name: install mysqldb and ansible dependencies
+  apt: name={{ item }} state=present update_cache=true
+  with_items:
+    - mysql-server
+    - python-mysqldb
+
+- name: create database `codedinbraam`
+  mysql_db: name={{ database_name }} state=present
+
+- name: create user
+  mysql_user:
+    name: "{{ database_user }}"
+    password: "{{ database_password }}"
+    priv: 'codedinbraam.*:ALL'
+    state: present
