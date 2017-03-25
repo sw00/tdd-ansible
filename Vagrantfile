@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "control", primary: true do |control|
     control.vm.box = "ubuntu/xenial32"
+    control.vm.box_url = "http://10.25.3.181:8000/ubuntu-xenial.box"
     control.vm.hostname = "control"
 
     control.vm.network "private_network", ip: "192.168.33.10"
@@ -27,6 +28,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "webserver" do |webserver|
     webserver.vm.box = "ubuntu/xenial32"
+    webserver.vm.box_url = "http://10.25.3.181:8000/ubuntu-xenial.box"
     webserver.vm.hostname = "webserver"
 
     webserver.vm.network "private_network", ip: "192.168.33.20"
